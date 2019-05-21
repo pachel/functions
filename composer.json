@@ -1,0 +1,19 @@
+{
+    "name": "pachel/functions",
+    "description": "Functions",
+    "type": "library",
+    "license": "(LGPL-2.1-only or GPL-3.0-or-later)",
+    "authors": [
+        {
+            "name": "laszlototh82",
+            "email": "laszlo.toth@planet-itservices.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php" : ">=5.6"
+    },
+    "autoload": {
+        "files": ["src/functions.php"]
+    }
+}
