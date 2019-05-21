@@ -57,3 +57,24 @@ function getUid($lenght = 32)
     }
     return $string;
 }
+
+function getSize($size)
+{
+    if($size<1024){
+        return $size." bytes";
+    }
+    $size = $size/1024;
+    if($size<1024){
+        return round($size)." kB";
+    }
+    $size = $size/1024;
+    if($size<1024){
+        return round($size,2)." Mb";
+    }
+    $size = $size/1024;
+    if($size<1024){
+        return round($size,2)." Gb";
+    }
+    $size = $size/1024;
+    return round($size,2)." Tb";
+}
