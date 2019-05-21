@@ -14,11 +14,13 @@ namespace pachel\functions;
  * @param $dir
  * @return string
  */
-function checkSlash($dir){
-    if(mb_substr($dir,strlen($dir)-1,1) == "/"){
+
+function checkSlash($dir)
+{
+    if (mb_substr($dir, strlen($dir) - 1, 1) == "/") {
         return $dir;
     }
-    return $dir."/";
+    return $dir . "/";
 }
 
 /**
