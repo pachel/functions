@@ -6,9 +6,6 @@
  * Time: 16:25
  */
 
-
-namespace pachel\functions;
-
 /**
  * Prüft, ob "/" hinten ist
  * @param $dir

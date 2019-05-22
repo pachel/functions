@@ -8,6 +8,6 @@
 
 require_once __DIR__."/../vendor/autoload.php";
 
-use pachel\functions;
 
-echo functions\checkSlash("asdads/sajsh");
+
+echo checkSlash("asdads/sajsh");
