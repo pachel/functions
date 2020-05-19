@@ -1,4 +1,6 @@
+nbproject/
 .idea
 .git
 vendor
 composer.lock
+/nbproject/private/
