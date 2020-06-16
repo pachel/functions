@@ -63,7 +63,7 @@ if (!function_exists("legnagyobbHatvany")) {
 }
 if (!function_exists("decodeString")) {
 
-    function encodeString($int, $lenght = 12) {
+    function decodeString($int, $lenght = 12) {
         
     }
 
