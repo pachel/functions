@@ -206,7 +206,10 @@ if (!function_exists("xorDec")) {
 }
 if (!function_exists("_log")) {
     function _log($text) {
-        $logfile = __DIR__ . "/../logs/info.log";
+        if(!defined("_LOG_DIR")){
+            exit();
+        }
+        $logfile = _LOG_DIR."/info.log";
         if (!file_exists($logfile)) {
             touch($logfile);
         }
