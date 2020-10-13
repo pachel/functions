@@ -45,7 +45,7 @@ if (!function_exists("getRandomString")) {
 }
 if (!function_exists("encodeString")) {
 
-    function encodeString($int) {
+    function encodeString($string) {
         $h = 36;
         $kesz = true;
         while ($kesz) {
@@ -214,7 +214,7 @@ if (!function_exists("_log")) {
             touch($logfile);
         }
         $logsize = filesize($logfile);
-        if ($logsize > (1024 * LOG_MAX_SIZE)) {
+        if ($logsize > (1024*1024* LOG_MAX_SIZE)) {
             rename($logfile, $logfile . "." . date("Ymd") . ".log");
             touch($logfile);
         }
