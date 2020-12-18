@@ -212,11 +212,13 @@ if (!function_exists("_log")) {
         $logfile = _LOG_DIR."/info.log";
         if (!file_exists($logfile)) {
             touch($logfile);
+            shell_exec("chmod -R 0777 \"".$logfile."\"");
         }
         $logsize = filesize($logfile);
         if ($logsize > (1024*1024* LOG_MAX_SIZE)) {
             rename($logfile, $logfile . "." . date("Ymd") . ".log");
             touch($logfile);
+            shell_exec("chmod -R 0777 \"".$logfile."\"");
         }
         file_put_contents($logfile, "[" . date("Y-m-d H:i:s") . "]" . $text . "\n", FILE_APPEND);
     }
