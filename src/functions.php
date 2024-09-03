@@ -224,3 +224,21 @@ if (!function_exists("_log")) {
     }
 
 }
+if(!function_exists("sslEnc")){
+    function sslEnc($string)
+    {
+        if (!session_id()) {
+            die('error: no session! (sslEnc)');
+        }
+        return openssl_encrypt($string, "bf-ecb", session_id());
+    }
+}
+if(!function_exists("sslDec")){
+    function sslDec($string)
+    {
+        if (!session_id()) {
+            die('error: no session! (sslDec)');
+        }
+        return openssl_decrypt($string, "bf-ecb", session_id());
+    }
+}
