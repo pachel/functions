@@ -242,3 +242,24 @@ if(!function_exists("sslDec")){
         return openssl_decrypt($string, "bf-ecb", session_id());
     }
 }
+if(!function_exists("precentageDisplayCli")){
+    /**
+     * @param numeric $actual_ct The current state of the process, a counter, e.g., loop variable.
+     * @param numeric $sum_ct The amount of 100%
+     * @param bool $restult_to_return
+     * @return mixed|void
+     */
+    function precentageDisplayCli($actual_ct,$sum_ct,$restult_to_return = false)
+    {
+        $w = round($this->_SCREEN/2);
+        $szazalek = round($actual_ct/$sum_ct*100);
+        $sz = floor($actual_ct/$sum_ct*($w-1));
+        $m = $w-1-$sz;
+        if($restult_to_return){
+            return $restult_to_return;
+        }
+        else {
+            "[\033[32m" . str_pad("#", $sz, "#") . ($szazalek == 100 ? "" : str_pad(" ", $m, " ")) . "\033[37m] \033[34m% " . $szazalek . "   \033[37m\r";
+        }
+    }
+}
