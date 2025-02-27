@@ -49,7 +49,7 @@ if (!function_exists("encodeString")) {
         $h = 36;
         $kesz = true;
         while ($kesz) {
-            
+
         }
     }
 
@@ -64,7 +64,7 @@ if (!function_exists("legnagyobbHatvany")) {
 if (!function_exists("decodeString")) {
 
     function decodeString($int, $lenght = 12) {
-        
+
     }
 
 }
@@ -178,12 +178,17 @@ if (!function_exists("XOREncryption")) {
 // create readable encrypted texts:
 if (!function_exists("xorEnc")) {
 
-    function xorEnc($InputString) {
-        if (!session_id()) {
-            die('error: no session! (xorEnc)');
+    function xorEnc($InputString,$KeyPhrase = NULL) {
+        if ($KeyPhrase == null) {
+            if (!session_id()) {
+                die('error: no session! (xorEnc)');
+            }
+            else {
+                $KeyPhrase = session_id();
+            }
         }
         $InputString .= '';
-        $InputString = XOREncryption($InputString, session_id());
+        $InputString = XOREncryption($InputString, $KeyPhrase);
         $InputString = base64_encode($InputString);
 
         return $InputString;
@@ -192,13 +197,19 @@ if (!function_exists("xorEnc")) {
 }
 if (!function_exists("xorDec")) {
 
-    function xorDec($InputString) {
-        if (!session_id()) {
-            die('error: no session! (xorDec)');
+    function xorDec($InputString,$KeyPhrase = null) {
+        if ($KeyPhrase == null) {
+            if (!session_id()) {
+                die('error: no session! (xorEnc)');
+            }
+            else {
+                $KeyPhrase = session_id();
+            }
         }
+
         $InputString .= '';
         $InputString = base64_decode($InputString);
-        $InputString = XOREncryption($InputString, session_id());
+        $InputString = XOREncryption($InputString, $KeyPhrase);
 
         return $InputString;
     }
