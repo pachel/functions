@@ -274,3 +274,39 @@ if(!function_exists("precentageDisplayCli")){
         }
     }
 }
+if (!function_exists("url")) {
+    function url($url = null)
+    {
+        if(is_array($url)){
+            $ret = "";
+            foreach ($url as $key => $value) {
+                if(!empty($ret)){
+                    $ret .= "&";
+                }
+                if(is_array($value)){
+                    $value = serialize($value);
+                }
+                $ret .= $key . "=" . $value;
+            }
+            return xorEnc($ret);
+        }elseif(!empty($url)){
+            return xorEnc($url);
+        }
+
+        $url = xorDec($_SERVER["QUERY_STRING"]);
+
+        if(preg_match_all("/([0-9a-z_\-]+)=([0-9a-z_ \-:\{\}\"\;]+)/i",$url,$preg)){
+            foreach ($preg[1] AS $index => $value){
+                $array = unserialize($preg[2][$index]);
+                if(is_array($array)){
+                    $get[$value] = $array;
+                }
+                else {
+                    $get[$value] = $preg[2][$index];
+                }
+            }
+            return $get;
+        }
+        return [];
+    }
+}
