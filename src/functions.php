@@ -13,7 +13,8 @@
  */
 if (!function_exists("checkSlash")) {
 
-    function checkSlash($dir) {
+    function checkSlash($dir)
+    {
         if (mb_substr($dir, strlen($dir) - 1, 1) == "/") {
             return $dir;
         }
@@ -28,7 +29,8 @@ if (!function_exists("checkSlash")) {
  */
 if (!function_exists("getRandomString")) {
 
-    function getRandomString($lenght = 10) {
+    function getRandomString($lenght = 10)
+    {
         $chars = [
             0 => [65, 90], //Großbuchstaben
             1 => [97, 122], //Kleinbuchstaben
@@ -45,7 +47,8 @@ if (!function_exists("getRandomString")) {
 }
 if (!function_exists("encodeString")) {
 
-    function encodeString($string) {
+    function encodeString($string)
+    {
         $h = 36;
         $kesz = true;
         while ($kesz) {
@@ -56,14 +59,16 @@ if (!function_exists("encodeString")) {
 }
 if (!function_exists("legnagyobbHatvany")) {
 
-    function legnagyobbHatvany($int, $szamkor) {
+    function legnagyobbHatvany($int, $szamkor)
+    {
         //pow();
     }
 
 }
 if (!function_exists("decodeString")) {
 
-    function decodeString($int, $lenght = 12) {
+    function decodeString($int, $lenght = 12)
+    {
 
     }
 
@@ -75,7 +80,8 @@ if (!function_exists("decodeString")) {
  */
 if (!function_exists("getUid")) {
 
-    function getUid($lenght = 32) {
+    function getUid($lenght = 32)
+    {
         $string = md5(time() . microtime() . mt_rand(0, 9999));
         if (strlen($string) > $lenght) {
             $string = substr($string, 0, $lenght);
@@ -86,7 +92,8 @@ if (!function_exists("getUid")) {
 }
 if (!function_exists("getSize")) {
 
-    function getSize($size) {
+    function getSize($size)
+    {
         if ($size < 1024) {
             return $size . " bytes";
         }
@@ -114,7 +121,8 @@ if (!function_exists("getSize")) {
  */
 if (!function_exists("checkSlash")) {
 
-    function checkSlash($dir) {
+    function checkSlash($dir)
+    {
         if (mb_substr($dir, strlen($dir) - 1, 1) == "/") {
             return $dir;
         }
@@ -129,7 +137,8 @@ if (!function_exists("checkSlash")) {
  */
 if (!function_exists("getRandomString")) {
 
-    function getRandomString($lenght = 10) {
+    function getRandomString($lenght = 10)
+    {
         $chars = [
             0 => [65, 90], //Großbuchstaben
             1 => [97, 122], //Kleinbuchstaben
@@ -147,13 +156,14 @@ if (!function_exists("getRandomString")) {
 /**
  * XOR encrypts a given string with a given key phrase.
  *
- * @param     string $InputString Input string
- * @param     string $KeyPhrase   Key phrase
+ * @param string $InputString Input string
+ * @param string $KeyPhrase Key phrase
  * @return    string    Encrypted string
  */
 if (!function_exists("XOREncryption")) {
 
-    function XOREncryption($InputString, $KeyPhrase) {
+    function XOREncryption($InputString, $KeyPhrase)
+    {
         $KeyPhraseLength = strlen($KeyPhrase);
 
         // Loop trough input string
@@ -178,12 +188,12 @@ if (!function_exists("XOREncryption")) {
 // create readable encrypted texts:
 if (!function_exists("xorEnc")) {
 
-    function xorEnc($InputString,$KeyPhrase = NULL) {
+    function xorEnc($InputString, $KeyPhrase = NULL)
+    {
         if ($KeyPhrase == null) {
             if (!session_id()) {
                 die('error: no session! (xorEnc)');
-            }
-            else {
+            } else {
                 $KeyPhrase = session_id();
             }
         }
@@ -197,12 +207,12 @@ if (!function_exists("xorEnc")) {
 }
 if (!function_exists("xorDec")) {
 
-    function xorDec($InputString,$KeyPhrase = null) {
+    function xorDec($InputString, $KeyPhrase = null)
+    {
         if ($KeyPhrase == null) {
             if (!session_id()) {
                 die('error: no session! (xorEnc)');
-            }
-            else {
+            } else {
                 $KeyPhrase = session_id();
             }
         }
@@ -216,26 +226,27 @@ if (!function_exists("xorDec")) {
 
 }
 if (!function_exists("_log")) {
-    function _log($text) {
-        if(!defined("_LOG_DIR")){
+    function _log($text)
+    {
+        if (!defined("_LOG_DIR")) {
             exit();
         }
-        $logfile = _LOG_DIR."/info.log";
+        $logfile = _LOG_DIR . "/info.log";
         if (!file_exists($logfile)) {
             touch($logfile);
-            shell_exec("chmod -R 0777 \"".$logfile."\"");
+            shell_exec("chmod -R 0777 \"" . $logfile . "\"");
         }
         $logsize = filesize($logfile);
-        if ($logsize > (1024*1024* LOG_MAX_SIZE)) {
+        if ($logsize > (1024 * 1024 * LOG_MAX_SIZE)) {
             rename($logfile, $logfile . "." . date("Ymd") . ".log");
             touch($logfile);
-            shell_exec("chmod -R 0777 \"".$logfile."\"");
+            shell_exec("chmod -R 0777 \"" . $logfile . "\"");
         }
         file_put_contents($logfile, "[" . date("Y-m-d H:i:s") . "]" . $text . "\n", FILE_APPEND);
     }
 
 }
-if(!function_exists("sslEnc")){
+if (!function_exists("sslEnc")) {
     function sslEnc($string)
     {
         if (!session_id()) {
@@ -244,7 +255,7 @@ if(!function_exists("sslEnc")){
         return openssl_encrypt($string, "bf-ecb", session_id());
     }
 }
-if(!function_exists("sslDec")){
+if (!function_exists("sslDec")) {
     function sslDec($string)
     {
         if (!session_id()) {
@@ -253,23 +264,22 @@ if(!function_exists("sslDec")){
         return openssl_decrypt($string, "bf-ecb", session_id());
     }
 }
-if(!function_exists("precentageDisplayCli")){
+if (!function_exists("precentageDisplayCli")) {
     /**
      * @param numeric $actual_ct The current state of the process, a counter, e.g., loop variable.
      * @param numeric $sum_ct The amount of 100%
      * @param bool $restult_to_return
      * @return mixed|void
      */
-    function precentageDisplayCli($actual_ct,$sum_ct,$restult_to_return = false)
+    function precentageDisplayCli($actual_ct, $sum_ct, $restult_to_return = false)
     {
-        $w = round($this->_SCREEN/2);
-        $szazalek = round($actual_ct/$sum_ct*100);
-        $sz = floor($actual_ct/$sum_ct*($w-1));
-        $m = $w-1-$sz;
-        if($restult_to_return){
+        $w = round($this->_SCREEN / 2);
+        $szazalek = round($actual_ct / $sum_ct * 100);
+        $sz = floor($actual_ct / $sum_ct * ($w - 1));
+        $m = $w - 1 - $sz;
+        if ($restult_to_return) {
             return $restult_to_return;
-        }
-        else {
+        } else {
             "[\033[32m" . str_pad("#", $sz, "#") . ($szazalek == 100 ? "" : str_pad(" ", $m, " ")) . "\033[37m] \033[34m% " . $szazalek . "   \033[37m\r";
         }
     }
@@ -277,36 +287,60 @@ if(!function_exists("precentageDisplayCli")){
 if (!function_exists("url")) {
     function url($url = null)
     {
-        if(is_array($url)){
+        if (is_array($url)) {
             $ret = "";
             foreach ($url as $key => $value) {
-                if(!empty($ret)){
+                if (!empty($ret)) {
                     $ret .= "&";
                 }
-                if(is_array($value)){
+                if (is_array($value)) {
                     $value = serialize($value);
                 }
                 $ret .= $key . "=" . $value;
             }
             return xorEnc($ret);
-        }elseif(!empty($url)){
+        } elseif (!empty($url)) {
             return xorEnc($url);
         }
 
         $url = xorDec($_SERVER["QUERY_STRING"]);
 
-        if(preg_match_all("/([0-9a-z_\-]+)=([0-9a-z_ \-:\{\}\"\;]+)/i",$url,$preg)){
-            foreach ($preg[1] AS $index => $value){
+        if (preg_match_all("/([0-9a-z_\-]+)=([0-9a-z_ \-:\{\}\"\;]+)/i", $url, $preg)) {
+            foreach ($preg[1] as $index => $value) {
                 $array = unserialize($preg[2][$index]);
-                if(is_array($array)){
+                if (is_array($array)) {
                     $get[$value] = $array;
-                }
-                else {
+                } else {
                     $get[$value] = $preg[2][$index];
                 }
             }
             return $get;
         }
         return [];
+    }
+}
+if (!function_exists("sqlWhereFromSearchText")) {
+    function sqlWhereFromSearchText($textToSearch, $cols)
+    {
+        if (!is_array($cols)) {
+            $cols = [$cols];
+        }
+        $sql = " ( ";
+        $szavak = explode(" ", trim($textToSearch));
+        foreach ($cols as $i => $col) {
+            if ($i > 0) {
+                $sql .= " OR ";
+            }
+            $sql .= " ( ";
+            foreach ($szavak as $c => $szo) {
+                if ($c > 0) {
+                    $sql .= " AND ";
+                }
+                $sql .= $col . " LIKE '%" . $szo . "%'";
+            }
+            $sql .= " ) ";
+        }
+        $sql .= " ) ";
+        return $sql;
     }
 }
