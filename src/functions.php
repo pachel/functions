@@ -307,7 +307,7 @@ if (!function_exists("url")) {
 
         if (preg_match_all("/([0-9a-z_\-]+)=([0-9a-z_ \-:\{\}\"\;]+)/i", $url, $preg)) {
             foreach ($preg[1] as $index => $value) {
-                $array = @unserialize($preg[2][$index]);
+                $array = unserialize($preg[2][$index]);
                 if (is_array($array)) {
                     $get[$value] = $array;
                 } else {
@@ -335,6 +335,31 @@ if (!function_exists("sqlWhereFromSearchText")) {
             foreach ($szavak as $c => $szo) {
                 if ($c > 0) {
                     $sql .= " AND ";
+                }
+                $sql .= $col . " LIKE '%" . $szo . "%'";
+            }
+            $sql .= " ) ";
+        }
+        $sql .= " ) ";
+        return $sql;
+    }
+}
+if (!function_exists("sqlWhereFromSearchText2")) {
+    function sqlWhereFromSearchText2($textToSearch, $cols)
+    {
+        if (!is_array($cols)) {
+            $cols = [$cols];
+        }
+        $sql = " ( ";
+        $szavak = explode(" ", trim($textToSearch));
+        foreach ($szavak as $c => $szo) {
+            if ($c > 0) {
+                $sql .= " AND ";
+            }
+            $sql .= " ( ";
+            foreach ($cols as $i => $col) {
+                if ($i > 0) {
+                    $sql .= " OR ";
                 }
                 $sql .= $col . " LIKE '%" . $szo . "%'";
             }
