@@ -344,7 +344,13 @@ if (!function_exists("sqlWhereFromSearchText")) {
         return $sql;
     }
 }
+
 if (!function_exists("sqlWhereFromSearchText2")) {
+    /**
+     * @param $textToSearch
+     * @param $cols
+     * @return string
+     */
     function sqlWhereFromSearchText2($textToSearch, $cols)
     {
         if (!is_array($cols)) {
