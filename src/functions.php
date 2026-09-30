@@ -307,7 +307,7 @@ if (!function_exists("url")) {
 
         if (preg_match_all("/([0-9a-z_\-]+)=([0-9a-z_ \-:\{\}\"\;]+)/i", $url, $preg)) {
             foreach ($preg[1] as $index => $value) {
-                $array = unserialize($preg[2][$index]);
+                $array = @unserialize($preg[2][$index]);
                 if (is_array($array)) {
                     $get[$value] = $array;
                 } else {
