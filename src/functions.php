@@ -406,3 +406,9 @@ if(!function_exists("better_scandir")) {
         return ($ret) ? $ret : false;
     }
 }
+if(!function_exists("trimmer")) {
+    function trimmer($text){
+        $text = preg_replace("/[\/]+/","/",$text);
+        return preg_replace("/[\\]+/","\\",$text);
+    }
+}
